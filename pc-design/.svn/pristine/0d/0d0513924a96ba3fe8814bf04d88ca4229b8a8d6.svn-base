@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible"
+        content="IE=edge">
+  <meta name="referrer"
+        content="never">
+  <meta name="viewport"
+        content="width=device-width,initial-scale=1.0">
+  <link rel="icon"
+        href="<%= BASE_URL %>favicon.ico">
+
+  <link rel="stylesheet"
+        href="//at.alicdn.com/t/font_841094_zfdxkkq3om.css">
+
+
+  <!--PC装修系统图标库 勿动-->
+  <link rel="stylesheet"
+        href="//at.alicdn.com/t/font_959128_7mzeuv3r22g.css">
+  <title>极捷号一站通</title>
+</head>
+
+<body>
+  <noscript>
+    <strong>We're sorry but pc-design doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+  </noscript>
+  <div id="app"></div>
+  <!-- built files will be auto injected -->
+
+  <body>
+    <noscript>
+      <strong>We're sorry but pc-design doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+
+  </body>
+
+  </html>

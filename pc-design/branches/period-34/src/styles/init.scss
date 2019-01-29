@@ -1,0 +1,878 @@
+@import "variables";
+
+// #region 图片标签
+
+.img-cover {
+  object-fit: cover;
+}
+
+.img-contain {
+  object-fit: contain;
+}
+
+.img-percent {
+  width: 100%;
+}
+
+// #endregion
+
+// #region 其他
+
+.ff-cls {
+  font-family: 'Consolas';
+}
+
+.bg-cover {
+  &.action {
+    position: relative;
+    border: 1px $grayLighter solid;
+
+    .upload-btn {
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      text-align: center;
+      //color: $bgImgUploadBtnColor;
+      line-height: 30px;
+      background-color: rgba(0, 0, 0, .3);
+      cursor: pointer;
+    }
+
+    .close {
+      position: absolute;
+      opacity: .7;
+      right: 10px;
+      top: 10px;
+      //color: $textColor;
+      cursor: pointer;
+
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+
+  @at-root .el-form-item.is-error &.action {
+    border-color: #f56c6c;
+  }
+}
+
+.el-form-item.is-error .pic-box {
+  border-color: #f56c6c;
+}
+
+.pic-box.mode1 {
+  display: inline-block;
+  position: relative;
+  width: 170px;
+  height: 130px;
+  border: 1px dashed #fff;
+
+  .img-obj {
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: contain;
+    position: relative;
+  }
+
+  &.small {
+    width: 100px;
+    height: 70px;
+  }
+
+  &:before {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    background-image: linear-gradient(45deg, rgba(0, 0, 0, .1) 25%, transparent 0, transparent 75%, rgba(0, 0, 0, .1) 0, rgba(0, 0, 0, .1)), linear-gradient(45deg, rgba(0, 0, 0, .1) 25%, transparent 0, transparent 75%, rgba(0, 0, 0, .1) 0, rgba(0, 0, 0, .1));
+    background-size: 12px 12px;
+    background-position: 0 0, 6px 6px;
+    content: "";
+  }
+
+  .add-img-tip {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-left: -30px;
+    margin-top: -30px;
+    padding-top: 45px;
+    width: 60px;
+    height: 70px;
+    font-size: 14px;
+    text-align: center;
+    text-decoration: underline;
+    color: #999;
+    cursor: pointer;
+
+    &:before,
+    &:after {
+      position: absolute;
+      background-color: #999;
+      content: "";
+    }
+
+    &:before {
+      top: 19px;
+      left: 10px;
+      width: 40px;
+      height: 3px;
+    }
+
+    &:after {
+      top: 0;
+      left: 29px;
+      width: 3px;
+      height: 40px;
+    }
+  }
+
+  .add-img-btn {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 24px;
+    line-height: 24px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, .3);
+    text-align: center;
+    cursor: pointer;
+  }
+}
+
+.pic-box.mode2 {
+  display: inline-block;
+  position: relative;
+  width: 170px;
+  height: 130px;
+
+  .img-obj {
+    width: 100%;
+    height: 100%;
+    background-repeat: no-repeat;
+    background-position: 50%;
+    background-size: contain;
+    position: relative;
+  }
+
+  .add-img-btn {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 24px;
+    line-height: 24px;
+    color: #fff;
+    background-color: rgba(0, 0, 0, .3);
+    text-align: center;
+    cursor: pointer;
+  }
+}
+
+.bj-close {
+  position: absolute;
+  top: 3px;
+  right: 3px;
+  width: 22px;
+  height: 22px;
+  cursor: pointer;
+  border-radius: 50%;
+  transition: all .1s ease-out;
+
+  &:hover {
+    background-color: $primary;
+
+    &:after,
+    &:before {
+      background-color: $white;
+    }
+  }
+
+  &:after,
+  &:before {
+    position: absolute;
+    top: 50%;
+    left: 18%;
+    width: 66%;
+    height: 2px;
+    margin-top: -1px;
+    content: "";
+    background-color: $primary;
+  }
+
+  &:before {
+    transform: rotate(45deg);
+  }
+
+  &:after {
+    transform: rotate(-45deg);
+  }
+}
+
+.el-pagination {
+  text-align: center;
+}
+
+.common-tit1 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  padding: 3px 0;
+  border-bottom: 1px $gray-line solid;
+
+  &.weight {
+    h4 {
+      font-weight: 700;
+      border-left: none;
+      color: $black-wd1;
+    }
+
+    .edit {
+      font-size: 12px;
+    }
+  }
+
+  h4 {
+    flex-grow: 1;
+    padding-left: 8px;
+    line-height: 1.2;
+    border-left: 2px $primary solid;
+    font-weight: 400;
+    color: $black-wd1;
+  }
+
+  .edit {
+    color: $primary;
+
+    >* {
+      cursor: pointer;
+    }
+  }
+}
+
+.common-tit2 {
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+  border-bottom: 1px $gray-line solid;
+  color: $black-wd1;
+
+  .tips {
+    color: $gray-zl4;
+
+    .iconfont-warning {
+      color: $m-red1;
+      position: relative;
+      top: 1px;
+    }
+  }
+
+  h4 {
+    flex-grow: 1;
+    line-height: 1.2;
+    font-weight: 400;
+  }
+}
+
+// #endregion
+
+// #region 盒子模型
+
+.dib {
+  display: inline-block;
+}
+
+.db {
+  display: block;
+}
+
+.dn {
+  display: none;
+}
+
+// #endregion
+
+// #region 弹性盒子
+
+.d-flex,
+.df {
+  display: flex;
+}
+
+.d-inline-flex,
+.dif {
+  display: inline-flex;
+}
+
+.dfc {
+  @extend .df;
+  align-items: center !important;
+}
+
+.dfcc {
+  @extend .dfc;
+  justify-content: center !important;
+}
+
+.dffdc {
+  @extend .df;
+  flex-direction: column;
+}
+
+.justify-center {
+  justify-content: center;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}
+
+.justify-between {
+  justify-content: space-between;
+}
+
+.justify-around {
+  justify-content: space-around;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+
+.align-start {
+  align-items: flex-start !important;
+}
+
+.align-center {
+  align-items: center;
+}
+
+.align-end {
+  align-items: flex-end;
+}
+
+.align-stretch {
+  align-items: stretch;
+}
+
+.align-self-stretch {
+  align-self: stretch;
+}
+
+.flex-wrap {
+  flex-wrap: wrap;
+}
+
+.flex-nowrap {
+  flex-wrap: nowrap;
+}
+
+.grow-0 {
+  flex-grow: 0 !important;
+}
+
+.grow-1 {
+  flex-grow: 1 !important;
+}
+
+.grow-2 {
+  flex-grow: 2 !important;
+}
+
+.shrink-0 {
+  flex-shrink: 0 !important;
+}
+
+.shrink-1 {
+  flex-shrink: 1 !important;
+}
+
+@each $i in $fx {
+  .fx#{$i} {
+    flex: #{$i} !important;
+  }
+}
+
+// #endregion
+
+// #region 文本
+
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-primary {
+  color: $primary !important;
+}
+
+.text-primary-com {
+  color: $primary-com !important;
+}
+
+.text-danger {
+  color: $color-danger;
+}
+
+.text-warning {
+  color: $warning;
+}
+
+.text-info {
+  color: $info;
+}
+
+.text-success {
+  color: $success;
+}
+
+.text-gray {
+  color: $gray;
+}
+
+.text-pink-m {
+  color: $m-red2;
+}
+
+.text-blue-m {
+  color: $m-blue;
+}
+
+.text-white {
+  color: $white;
+}
+
+.text-weight {
+  font-weight: 700 !important;
+}
+
+.fwb {
+  font-weight: bold;
+}
+
+.text-ellipsis {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.text-nowrap {
+  white-space: nowrap;
+}
+
+.word-break {
+  word-break: break-all;
+  word-wrap: break-word
+}
+
+.text-primary-l20 {
+  color: lighten($primary, 20%);
+}
+
+.text-primary-d20 {
+  color: darken($primary, 20%) !important;
+}
+
+.text-white {
+  color: $white !important;
+}
+
+.text-black-d20 {
+  color: darken($black, 20%);
+}
+
+.text-gray-d15 {
+  color: darken($gray, 15%);
+}
+
+.text-gray-d20 {
+  color: darken($gray, 20%);
+}
+
+.text-gray-d30 {
+  color: darken($gray, 30%);
+}
+
+.text-gray-d40 {
+  color: darken($gray, 40%);
+}
+
+.text-gray-l10 {
+  color: lighten($gray, 10%);
+}
+
+.text-gray-l20 {
+  color: lighten($gray, 20%);
+}
+
+.text-gray-l30 {
+  color: lighten($gray, 30%);
+}
+
+.text-gray-l40 {
+  color: lighten($gray, 40%);
+}
+
+.text-gray-l80 {
+  color: lighten($gray, 80%);
+}
+
+// #endregion
+
+// #region 背景图
+
+.bg-img-admin {
+  background-color: $admin-img-bgc;
+}
+
+.bg-cover {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.bg-contain {
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+
+// #endregion
+
+// #region 背景色
+
+.bg-gray-l62 {
+  background-color: lighten($gray, 62%);
+}
+
+.bg-gray-l64 {
+  background-color: lighten($gray, 64%);
+}
+
+.bg-primary {
+  background-color: $primary;
+}
+
+.bg-primary-com {
+  background-color: $primary-com;
+}
+
+.bg-danger {
+  background-color: $danger-zl;
+}
+
+.bg-white {
+  background-color: $white !important;
+}
+
+.bg-gray {
+  background-color: $color-gray !important;
+}
+
+.bg-gray-lv2 {
+  background-color: $color-gray-lv2 !important;
+}
+
+.bg-blue {
+  background-color: $color-blue !important;
+}
+
+// #endregion
+
+// #region 鼠标
+
+.c-pointer,
+.cup {
+  cursor: pointer;
+}
+
+.c-not-allowed {
+  cursor: not-allowed;
+}
+
+// #endregion
+
+// #region 边框
+
+.bd-none {
+  border: 0;
+}
+
+.bd-gray {
+  border: 1px $gray-line solid;
+}
+
+.bt-gray {
+  border-top: 1px $gray-line solid;
+}
+
+.bb-gray {
+  border-bottom: 1px $gray-line solid;
+}
+
+
+// #endregion
+
+// #region 三角形
+
+//三角形右边
+.b-triangle {
+  width: 0;
+  height: 0;
+  border-top: 32px solid $primary;
+  border-right: 32px solid $primary;
+  border-bottom: 32px solid transparent;
+  border-left: 32px solid transparent;
+}
+
+//三角形左边
+.b-triangle-right {
+  width: 0;
+  height: 0;
+  border-top: 32px solid $primary;
+  border-right: 32px solid transparent;
+  border-bottom: 32px solid transparent;
+  border-left: 32px solid $primary;
+}
+
+// #endregion
+
+// #region 定位与布局
+
+.po-re,
+.por {
+  position: relative;
+}
+
+.po-ab,
+.poa {
+  position: absolute;
+}
+
+.fl {
+  float: left !important;
+}
+
+.fr {
+  float: right !important;
+}
+
+.clearfix:after {
+  content: "";
+  display: block;
+  height: 0;
+  visibility: hidden;
+  clear: both;
+}
+
+.clearfix {
+  zoom: 1;
+}
+
+// #endregion
+
+// #region 圆角边框阴影
+
+.bsr {
+  border-radius: 50%;
+}
+
+.bsr-blue {
+  border-radius: 50%;
+  box-shadow: 0 0 30px 5px lighten($shadow-blue, 20%);
+}
+
+.alert-popup {
+  width: 100%;
+  background-color: $white;
+}
+
+// #endregion
+
+// #region 尺寸与距离
+
+@each $i in $w {
+  .w#{$i} {
+    width: #{$i}px !important;
+  }
+}
+
+@each $i in $wp {
+  .w#{$i}p {
+    width: #{$i}#{"%"} !important;
+  }
+}
+
+@each $i in $hp {
+  .h#{$i}p {
+    height: #{$i}#{"%"} !important;
+  }
+
+  .max-h#{$i}p {
+    max-height: #{$i}#{"%"} !important;
+  }
+
+  .min-h#{$i}p {
+    min-height: #{$i}#{"%"} !important;
+  }
+}
+
+@each $i in $h {
+  .h#{$i} {
+    height: #{$i}px !important;
+  }
+}
+
+@each $i in $p {
+  .p#{$i} {
+    padding: #{$i}px !important;
+  }
+}
+
+@each $i in $pt {
+  .pt#{$i} {
+    padding-top: #{$i}px !important;
+  }
+}
+
+@each $i in $pr {
+  .pr#{$i} {
+    padding-right: #{$i}px !important;
+  }
+}
+
+@each $i in $pb {
+  .pb#{$i} {
+    padding-bottom: #{$i}px !important;
+  }
+}
+
+@each $i in $pl {
+  .pl#{$i} {
+    padding-left: #{$i}px !important;
+  }
+}
+
+@each $i in $m {
+  .m#{$i} {
+    margin: #{$i}px !important;
+  }
+}
+
+@each $i in $mt {
+  .mt#{$i} {
+    margin-top: #{$i}px !important;
+  }
+}
+
+@each $i in $mr {
+  .mr#{$i} {
+    margin-right: #{$i}px !important;
+  }
+}
+
+@each $i in $mb {
+  .mb#{$i} {
+    margin-bottom: #{$i}px !important;
+  }
+}
+
+@each $i in $ml {
+  .ml#{$i} {
+    margin-left: #{$i}px !important;
+  }
+}
+
+@each $i in $bdr {
+  .bdr#{$i} {
+    border-radius: #{$i}px !important;
+  }
+}
+
+@each $i in $fz {
+  .fz#{$i} {
+    font-size: #{$i}px !important;
+  }
+}
+
+@each $i in $lh {
+  .lh#{$i} {
+    line-height: #{$i}px !important;
+  }
+}
+
+@each $i in $lh- {
+  .lh-#{$i} {
+    line-height: #{$i} !important;
+  }
+}
+
+@each $i in $rotate {
+  .rotate#{$i} {
+    transform: rotate(#{$i}deg);
+  }
+}
+
+@each $i in $opacity {
+  .opa#{$i} {
+    opacity: $i / 100;
+  }
+}
+
+// #endregion
+
+// #region 公用样式
+
+.app-block-lv2 {
+  display: block;
+  padding: 18px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  background-color: $color-gray-lv2;
+  border-radius: 5px;
+
+  &:not(:last-of-type) {
+    margin-bottom: 20px;
+  }
+
+  &:first-child {
+    margin-top: 0;
+  }
+
+  >h6:first-child {
+    font-size: 15px;
+    font-weight: bold;
+    padding-bottom: 10px;
+    border-bottom: 1px solid $color-gray-lv2-bd;
+    margin-bottom: 10px;
+  }
+}
+
+h6.app-title {
+  position: relative;
+  font-size: 16px;
+  font-weight: bold;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid $color-gray-lv2-bd;
+
+  span {
+    position: absolute;
+    right: 20px;
+    font-size: 14px;
+    font-weight: normal;
+  }
+}
+
+// #endregion

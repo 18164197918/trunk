@@ -1,0 +1,634 @@
+.user-module{
+  position: absolute;
+  min-width: 5px;
+  min-height: 5px;
+}
+
+.content-box-head,
+.content-box-foot {
+  z-index: 3;
+}
+
+/* ===== 按钮 start ===== */
+.pc-module-an {
+  .inner {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+
+    cursor: pointer;
+    > * {
+      font-size: inherit;
+    }
+
+    .iconfont {
+      flex-shrink: 0;
+      margin-right: 2px;
+    }
+    .text {
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+    }
+    .textarea {
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+    }
+  }
+}
+
+/* ===== 按钮 end ===== */
+
+/* ===== 图片 start ===== */
+.pc-module-tp {
+  .inner {
+    position: relative;
+    overflow: hidden;
+    display: block;
+    height: 100%;
+    border: 0 !important;
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      box-shadow: none !important;
+      transform: initial !important;
+    }
+    &:before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      transform: initial !important;
+      background: none !important;
+      /*box-shadow: none!important;*/
+    }
+  }
+}
+
+
+.pc-module-html{
+  height:auto !important;
+}
+
+/* ===== 图片 end ===== */
+
+/* ===== 简单文本 start ===== */
+.pc-module-wb {
+  .inner {
+    height: inherit;
+    pointer-events: auto;
+  }
+}
+/* ===== 简单文本 end ===== */
+
+/* ===== 地图 start ===== */
+.pc-module-map {
+  .inner{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  iframe{
+    width: 100%;
+    height: 100%;
+  }
+}
+/* ===== 地图 end ===== */
+
+/* ===== 视频 start ===== */
+.pc-module-video {
+  .inner{
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+  }
+  iframe{
+    width: 100%;
+    height: 100%;
+  }
+}
+/* ===== 视频 end ===== */
+
+/* ===== 形状 start ===== */
+.pc-module-xz {
+  .inner {
+    display: block;
+    position: relative;
+    height: 100%;
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+/* ===== 形状 end ===== */
+
+/* ===== 分组 start ===== */
+.pc-module-group {
+  .inner-group {
+    //overflow: hidden;
+    position: relative;
+    height: 100%;
+
+    .pc-module-xz {
+      //pointer-events: none;
+    }
+  }
+}
+
+/* ===== 分组 end ===== */
+
+/* ===== 容器 start ===== */
+.design-module-wrapper {
+  .col-mark {
+    border-right: 1px dashed rgba(204, 204, 204, 1);
+    &:last-child {
+      border-right: 0;
+    }
+  }
+}
+
+.container-wrapper {
+  position: relative;
+  .container {
+    margin: 0 auto;
+    min-height: inherit;
+    max-width: 100%;
+  }
+  .row {
+    display: flex;
+    min-height: inherit;
+  }
+  .col, .col-1, .col-2, .col-3, .col-4, .col-5, .col-6, .col-7, .col-8, .col-9, .col-10, .col-11, .col-12, .col-auto {
+    position: relative;
+    width: 100%;
+  }
+  .col-auto {
+    flex: 0 0 auto;
+    width: auto;
+    max-width: none;
+  }
+
+  .col-1 {
+    flex: 0 0 8.333333%;
+    max-width: 8.333333%;
+  }
+
+  .col-2 {
+    flex: 0 0 16.666667%;
+    max-width: 16.666667%;
+  }
+
+  .col-3 {
+    flex: 0 0 25%;
+    max-width: 25%;
+  }
+
+  .col-4 {
+    flex: 0 0 33.333333%;
+    max-width: 33.333333%;
+  }
+
+  .col-5 {
+    flex: 0 0 41.666667%;
+    max-width: 41.666667%;
+  }
+
+  .col-6 {
+    flex: 0 0 50%;
+    max-width: 50%;
+  }
+
+  .col-7 {
+    flex: 0 0 58.333333%;
+    max-width: 58.333333%;
+  }
+
+  .col-8 {
+    flex: 0 0 66.666667%;
+    max-width: 66.666667%;
+  }
+
+  .col-9 {
+    flex: 0 0 75%;
+    max-width: 75%;
+  }
+
+  .col-10 {
+    flex: 0 0 83.333333%;
+    max-width: 83.333333%;
+  }
+
+  .col-11 {
+    flex: 0 0 91.666667%;
+    max-width: 91.666667%;
+  }
+
+  .col-12 {
+    flex: 0 0 100%;
+    max-width: 100%;
+  }
+
+  .order-first {
+    order: -1;
+  }
+
+  .order-last {
+    order: 13;
+  }
+
+  .order-0 {
+    order: 0;
+  }
+
+  .order-1 {
+    order: 1;
+  }
+
+  .order-2 {
+    order: 2;
+  }
+
+  .order-3 {
+    order: 3;
+  }
+
+  .order-4 {
+    order: 4;
+  }
+
+  .order-5 {
+    order: 5;
+  }
+
+  .order-6 {
+    order: 6;
+  }
+
+  .order-7 {
+    order: 7;
+  }
+
+  .order-8 {
+    order: 8;
+  }
+
+  .order-9 {
+    order: 9;
+  }
+
+  .order-10 {
+    order: 10;
+  }
+
+  .order-11 {
+    order: 11;
+  }
+
+  .order-12 {
+    order: 12;
+  }
+}
+
+/* ===== 容器 end ===== */
+
+/* ===== 菜单 start ===== */
+.pc-module-menu {
+  //overflow: hidden;
+
+  .inner-menu {
+    height: 100%;
+  }
+  .ul {
+    position: relative;
+  }
+  .level1 {
+    display: flex;
+  }
+  .level2 {
+    width: 100%;
+  }
+  .li1 {
+    position: relative;
+    flex-grow: 1;
+    flex-shrink: 1;
+
+    &:hover {
+      .level2 {
+        display: block;
+      }
+    }
+  }
+  .pc-module-an {
+    position: relative !important;
+  }
+
+
+  &.horizontal1{
+    .inner-menu {
+      flex-direction: row;
+    }
+
+    .level1{
+      flex-wrap: nowrap;
+    }
+    .li1{
+      width: 1%;
+    }
+    .level2{
+      display: none;
+      position: absolute;
+    }
+  }
+
+  &.vertical1 {
+    height:auto;
+
+    .inner-menu {
+      flex-direction: column;
+    }
+  }
+
+
+  &.vertical2 {
+    .inner-menu {
+      flex-direction: column;
+    }
+    .li1 {
+      &:hover{
+        .level2 {
+          max-height: 1000px;
+          //transition: all 1s ease;
+        }
+      }
+    }
+
+    .level2 {
+      position: inherit;
+      //max-height: 0;
+      //transition: all 1s ease;
+      display: block;
+      overflow: hidden;
+    }
+  }
+
+  &.vertical3 {
+    .inner-menu {
+      flex-direction: column;
+    }
+
+    .li1 {
+      &:hover{
+        .level2 {
+          width: 100%;
+          transition: all .3s ease;
+        }
+      }
+    }
+
+    .level2 {
+      overflow: hidden;
+      display: block;
+      position: absolute;
+      top: 1px;
+      left: 100%;
+      width: 0;
+      transition: all .3s ease;
+    }
+  }
+}
+/* ===== 菜单 end ===== */
+
+/* ===== 翻页 start ===== */
+.pc-module-page {
+  //overflow: hidden;
+
+  .inner-page {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+  }
+
+
+
+  .pc-module-an {
+    position: relative !important;
+  }
+}
+/* ===== 翻页 end ===== */
+
+
+/* ===== 列表 start ===== */
+.pc-module-list {
+  //position: relative;
+  .swiper-box {
+    position: relative;
+    height: inherit;
+
+    &.single-row {
+      .wrapper {
+        display: flex;
+        flex-wrap: nowrap;
+        .inner-gap {
+          width: 100% !important;
+        }
+      }
+    }
+    &.multi-row {
+      .wrapper {
+        display: flex;
+        flex-wrap: wrap;
+
+        .inner-gap {
+          flex-shrink: 0;
+        }
+      }
+    }
+    &.waterfall {
+      .wrapper {
+        column-gap: 0;
+        .inner-gap {
+          break-inside: avoid;
+          width: auto;
+          .inner-group {
+            height: auto;
+            .user-module {
+              position: relative;
+              top: auto;
+              left:auto;
+              right:auto;
+              bottom:auto;
+              width: 100%;
+              height:auto;
+              .inner {
+                height: auto;
+              }
+              img{
+                height:auto;
+              }
+            }
+          }
+        }
+      }
+    }
+
+    &.swiper {
+      overflow: hidden;
+      .wrapper {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        .inner-gap {
+          flex-shrink: 0;
+          width: 100%;
+          height: 100%;
+        }
+      }
+    }
+  }
+
+  .pc-module-xz {
+    pointer-events: none;
+  }
+  .inner-gap, .inner-group {
+    position: relative;
+  }
+}
+
+/* TODO 瀑布流
+.pc-module-list{
+    position: relative;
+    column-count: 2;
+    column-gap: 0;
+    .wrapper{
+        position: relative;
+        break-inside: avoid;
+        height: 300px;
+    }
+}*/
+
+.user-module > a[href=""]{
+  cursor: default;
+}
+
+
+.swiper-container-vertical > .wrapper {
+  flex-direction: column;
+}
+
+.swiper-container-3d {
+  perspective: 1200px;
+}
+
+.swiper-container-flip {
+  overflow: visible;
+  .inner-gap {
+    pointer-events: none;
+    backface-visibility: hidden;
+    z-index: 1;
+  }
+}
+
+.swiper-container-cube {
+  overflow: visible;
+
+  .inner-gap {
+    //pointer-events: none;
+    backface-visibility: hidden;
+    z-index: 1;
+    transform-origin: 0 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.swiper-container-3d .swiper-slide-shadow-left {
+  background-image: linear-gradient(to left, rgba(0, 0, 0, .5), rgba(0, 0, 0, 0));
+}
+
+.swiper-container-3d .swiper-slide-shadow-right {
+  background-image: linear-gradient(to right, rgba(0, 0, 0, .5), rgba(0, 0, 0, 0));
+}
+
+.swiper-cube-shadow {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  opacity: .6;
+  -webkit-filter: blur(50px);
+  filter: blur(50px);
+  z-index: 0;
+}
+
+.swiper-container-3d .swiper-cube-shadow,
+.swiper-container-3d .swiper-slide-shadow-bottom,
+.swiper-container-3d .swiper-slide-shadow-left,
+.swiper-container-3d .swiper-slide-shadow-right,
+.swiper-container-3d .swiper-slide-shadow-top,
+.swiper-container-3d .wrapper,
+.swiper-container-3d .inner-gap {
+  transform-style: preserve-3d;
+}
+
+.swiper-container-3d .swiper-slide-shadow-bottom,
+.swiper-container-3d .swiper-slide-shadow-left,
+.swiper-container-3d .swiper-slide-shadow-right,
+.swiper-container-3d .swiper-slide-shadow-top {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+/* ===== 列表 end ===== */
+
+/* ===== tabbar start ===== */
+.tabbar-box{
+  position: relative;
+  .pc-module-tabbar {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+    min-height: 20px;
+
+    .swiper-box{
+      height: 100%;
+
+      .wrapper{
+        display: flex;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+
+        .inner-gap{
+          flex-grow: 1;
+
+          .inner-group{
+            position: relative;
+          }
+        }
+      }
+    }
+
+  }
+}
+/* ===== tabbar end ===== */

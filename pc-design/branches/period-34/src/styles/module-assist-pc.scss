@@ -1,0 +1,651 @@
+@import "./variables";
+
+body.body-pc-edit {
+  &.dragging {
+    user-select: none;
+    cursor: move;
+
+    //防止 pc-module-* 模块拖动过程中侦测不到 container-wrapper
+    *[class^="pc-module-"] {
+      pointer-events: none;
+
+      .inner {
+        pointer-events: none;
+      }
+    }
+
+    .left-box {
+      //pointer-events: none;
+      opacity: .8;
+    }
+
+    &.sort-list{
+      .left-box {
+        opacity: 1;
+      }
+    }
+
+    .module-assist {
+      display: none !important;
+      //opacity: 0 !important;
+      > * {
+        pointer-events: none;
+      }
+
+      &.selected {
+        display: block !important;
+      }
+    }
+
+    .content-box {
+      overflow-x: hidden;
+    }
+
+    &.resizing-module {
+      .container-wrapper.common-module-resizing {
+        min-height: initial;
+
+        .container {
+          min-height: initial;
+          height: inherit;
+
+          .row {
+            min-height: initial;
+            height: inherit;
+          }
+        }
+      }
+    }
+  }
+
+  &.moving-module {
+    .user-module {
+      perspective: none !important;
+    }
+  }
+
+  *[class^="pc-module-"] {
+    z-index: 2;
+  }
+
+  /* 针对左侧编辑区内模块 start */
+  .tpl-list {
+    //左侧编辑区内模块靠 .user-module 做委托
+    //需要屏蔽内部事件监听
+    > .user-module {
+      position: relative;
+      user-select: none;
+      cursor: move;
+    }
+    /*.pc-module-an {
+      .module-assist {
+        pointer-events: none;
+      }
+    }
+    .pc-module-map,
+    .pc-module-video{
+      iframe {
+        pointer-events: none;
+      }
+    }
+    .module-assist {
+      display: none;
+    }*/
+
+    /*.pc-module-an,
+    .pc-module-tp,
+    .pc-module-wb,
+    .pc-module-,*/
+
+    *[class^="pc-module-"] {
+      .module-assist {
+        pointer-events: none;
+      }
+      iframe {
+        pointer-events: none;
+      }
+    }
+
+    .pc-module-menu,
+    .pc-module-page,
+    .pc-module-list,
+    .container-wrapper {
+      .user-module {
+        pointer-events: none;
+      }
+    }
+  }
+
+  /* 针对左侧模板内模块 end */
+
+  /* 针对编辑区内 user-module  start */
+  .content-box {
+    .user-module {
+      //模块拖拽时 fixed 定位
+      &.common-module-dragging {
+        z-index: 1000;
+        position: fixed !important;
+        box-shadow: 0 0 20px rgba(0, 0, 0, .3);
+        transition: box-shadow .13s;
+      }
+
+      //简单文本编辑器
+      .tool-bar {
+        font-size: 14px;
+        line-height: 1.5;
+        width: 385px;
+        position: absolute;
+        left: 50%;
+        top: -33px;
+        border: 1px #eee solid;
+        background-color: #fff;
+        transform: translateX(-50%);
+        z-index: 1000;
+      }
+      .w-e-text {
+        @include scrollbar(0);
+        padding: inherit;
+      }
+      .w-e-icon-pencil2 ~ .w-e-droplist, .w-e-icon-paint-brush ~ .w-e-droplist {
+        width: 260px !important;
+      }
+      .w-e-text p, .w-e-text h1, .w-e-text h2, .w-e-text h3, .w-e-text h4, .w-e-text h5, .w-e-text table, .w-e-text pre {
+        line-height: inherit;
+        margin: inherit;
+      }
+
+      //针对容器
+      &.container-wrapper {
+        & > .module-assist {
+          z-index: 3;
+          pointer-events: none;
+
+          > .drag-handle {
+            position: absolute;
+            opacity: 0;
+            left: auto;
+            right: 0;
+            top: 0;
+            width: 30px;
+            height: 30px;
+            background-color: $primary;
+            transition: opacity .2s;
+
+            &:after {
+              position: absolute;
+              left: 0;
+              top: 0;
+              right: 0;
+              bottom: 0;
+              font-family: "iconfont" !important;
+              font-size: 16px;
+              line-height: 30px;
+              text-align: center;
+              color: $white;
+              content: "\e988";
+            }
+          }
+
+          > .resizable-handle {
+            display: none;
+          }
+          &.selected > .resizable-handle {
+            display: block;
+          }
+        }
+
+        &:hover > .module-assist {
+          > .drag-handle {
+            opacity: .3;
+          }
+          > .drag-handle:hover {
+            opacity: 1;
+          }
+        }
+
+        &.dragging {
+          position: fixed !important;
+          width: 100%;
+          pointer-events: none;
+          z-index: 10000;
+        }
+
+        &.container-wrapper-dragging-on {
+          > .module-assist {
+            display: block !important;
+            box-shadow: inset 0 0 40px rgba(0, 0, 0, .15);
+            border: 0 !important;
+          }
+        }
+
+        //容器内模块超出 container两侧边界时提示
+        > .container {
+          position: relative;
+          &:before,
+          &:after {
+            opacity: .4;
+            z-index: 1000;
+            position: absolute;
+            top: 0;
+            width: 100vw;
+            height: 100%;
+            background-color: rgba(0, 0, 0, .3);
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAgAAAAIAQMAAAD+wSzIAAAABlBMVEUAAAD///+l2Z/dAAAAAXRSTlMAQObYZgAAABhJREFUCNdjaGBgZGBiYGHgYBBgUGBwAAAI/wEAbGJIvQAAAABJRU5ErkJggg==);
+            background-repeat: repeat;
+            pointer-events: none;
+          }
+          &:before {
+            left: -100vw;
+          }
+          &:after {
+            right: -100vw;
+          }
+        }
+        &.not-on-container {
+          > .container {
+            &:before,
+            &:after {
+              content: '';
+            }
+          }
+        }
+
+        //模块拖拽至容器内某列时提示
+        .col-mark {
+          &.col-mark-dragging-on {
+            box-shadow: inset 0 0 30px rgba(0, 0, 0, .2);
+          }
+        }
+      }
+
+      .module-assist {
+        border: 1px transparent solid;
+        &:hover {
+          .class-name {
+            display: block;
+          }
+        }
+
+        &.selected {
+          border-color: rgba(0, 0, 0, .1);
+          &.allow-drag {
+            border-color: $primary;
+          }
+          .resizable-handle {
+            display: block;
+          }
+
+          /*.class-name {
+            display: none;
+          }*/
+
+          .group-handle {
+            display: block;
+          }
+        }
+
+        &.edit {
+          pointer-events: none;
+          .drag-handle {
+            pointer-events: none;
+            cursor: auto;
+          }
+        }
+      }
+
+      //针对列表
+      .inner-gap {
+        &:not(:first-child) {
+          .module-assist.selected {
+            border-style: dashed !important;
+          }
+        }
+      }
+
+    }
+  }
+
+  /* 针对编辑区内 user-module  end */
+
+  /* 高级组件内普通模块 start */
+  .pc-module-group,
+  .pc-module-list,
+  .pc-module-menu,
+  .pc-module-page {
+    .user-module {
+      pointer-events: none;
+
+      .inner{
+        pointer-events: none;
+      }
+
+      .module-assist > * {
+        pointer-events: none;
+      }
+    }
+
+    //需要在选中后才能编辑
+    &.edit-sub-module {
+      &:after {
+        position: absolute;
+        left: 0;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        content: "";
+        border: 1px #f89f62 dashed;
+        z-index: -1;
+      }
+
+      .user-module {
+        pointer-events: auto;
+        .inner{
+          pointer-events: auto;
+        }
+
+        .module-assist > * {
+          pointer-events: auto;
+        }
+      }
+    }
+  }
+
+  .design-pc.preview{
+    .content-box{
+      @include scrollbar(10px, #ccc);
+    }
+
+    .pc-module-group,
+    .pc-module-list,
+    .pc-module-menu,
+    .pc-module-page {
+      .user-module {
+        pointer-events: auto;
+
+        .inner{
+          pointer-events: auto;
+        }
+      }
+    }
+  }
+
+  .pc-module-group {
+    //需要在选中后才能编辑
+    &.edit-sub-module {
+      &:after {
+        border-color: #58ccac;
+      }
+    }
+  }
+
+  .content-box {
+    .user-module {
+      &.pc-module-group {
+        > .module-assist {
+          &.selected {
+            border-color: #58ccac;
+          }
+        }
+      }
+      &.pc-module-list,
+      &.pc-module-menu,
+      &.pc-module-page {
+        > .module-assist {
+          &.selected {
+            border-color: #f89f62;
+          }
+        }
+
+        /*.user-module{
+          .selected{
+            border-style: dashed;
+          }
+
+          &:nth-child(1){
+            .selected{
+              border-style: solid;
+            }
+          }
+        }*/
+      }
+    }
+  }
+
+  /* 高级组件内普通模块 end */
+
+  /* 通用 module-assist start */
+  .module-assist {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    font-size: 12px;
+    font-family: "Microsoft YaHei";
+
+    > * {
+      pointer-events: auto;
+    }
+
+    //模块提示 名称和 className
+    .class-name {
+      display: none;
+      position: absolute;
+      left: -1px;
+      top: -17px;
+      font-size: 12px;
+      line-height: 16px;
+      width: 80px;
+      height: 16px;
+      pointer-events: none;
+
+      em {
+        padding: 0 5px;
+        color: $primary;
+        background-color: #d3edff;
+      }
+      i {
+        padding: 0 5px;
+        color: #333;
+        background-color: #f0f3f5;
+      }
+    }
+
+    //组合切换提示
+    .group-handle {
+      display: none;
+      position: absolute;
+      right: 15px;
+      top: -12px;
+      font-size: 12px;
+      line-height: 24px;
+      height: 24px;
+      width: 50px;
+      color: $white;
+      text-align: center;
+      user-select: none;
+      background-color: #2b81cb;
+      border-radius: 4px;
+      cursor: pointer;
+      z-index: 100;
+
+      &.on {
+        background-image: linear-gradient(0deg, #3899ec, #4eb7f5);
+      }
+
+    }
+
+    //改变大小 handle
+    .resizable-handle {
+      display: none;
+      position: absolute;
+      touch-action: none;
+
+      &.resize-n {
+        cursor: n-resize;
+        height: 7px;
+        width: 100%;
+        top: -5px;
+        left: 0;
+      }
+      &.resize-e {
+        cursor: e-resize;
+        width: 7px;
+        right: -5px;
+        top: 0;
+        height: 100%;
+      }
+      &.resize-s {
+        cursor: s-resize;
+        height: 7px;
+        width: 100%;
+        bottom: -5px;
+        left: 0;
+      }
+      &.resize-w {
+        cursor: w-resize;
+        width: 7px;
+        left: -5px;
+        top: 0;
+        height: 100%;
+      }
+      &.resize-se {
+        right: -4px;
+        bottom: -4px;
+        width: 7px;
+        height: 7px;
+        border: 1px solid #fff;
+        border-radius: 50%;
+        box-shadow: 1px 1px 2px rgba(0, 0, 0, .2);
+        background: -webkit-gradient(linear, 0 0, 0 100%, from(lighten($primary, 30%)), to(darken($primary, 20%)));
+        cursor: se-resize;
+      }
+    }
+
+    //拖拽 handle
+    .drag-handle {
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      cursor: move;
+    }
+  }
+
+  /* 通用 module-assist end */
+
+  /* 拖拽新模块时虚拟框 start */
+  .module-cloned {
+    display: none;
+    position: absolute;
+    background-color: rgba(37, 137, 255, .16);
+    border: 2px rgba(37, 137, 255, .5) dotted;
+    pointer-events: none;
+    cursor: move;
+    z-index: 10000;
+    transition: width .1s ease, height .1s ease;
+  }
+
+  /* 拖拽新模块时虚拟框 end */
+
+  /* 拖拽容器时辅助框 start */
+  .sortable-place-holder {
+    position: relative;
+    border: 2px #c6a299 dotted;
+    background-color: #fff8f9;
+    height: 200px;
+    pointer-events: none;
+
+    &:before {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translateX(-50%) translateY(-50%);
+      color: #ccc;
+      content: "即将拖放至此处";
+      pointer-events: none;
+    }
+  }
+
+  /* 拖拽容器时辅助框 end */
+
+  /* 范围选择辅助框 start */
+  .select-range-mask {
+    position: absolute;
+    width: 100px;
+    height: 100px;
+    background-color: rgba(37, 137, 255, .16);
+    border: 1px rgba(37, 137, 255, .5) dotted;
+    pointer-events: none;
+    z-index: 10000;
+  }
+
+  /* 范围选择辅助框 end */
+
+  /* 改变列表垂直高度出现的问题 start */
+  .pc-module-list {
+    &.common-module-resizing {
+      .wrapper {
+        height: inherit;
+
+        .inner-group {
+          height: 100% !important;
+        }
+      }
+    }
+  }
+
+  /* 改变列表垂直高度出现的问题 end */
+
+  /* 头部和底部提示信息 start */
+  .content-box-head,
+  .content-box-foot {
+    &:hover {
+      &:after {
+        display: block;
+      }
+    }
+
+    &:after {
+      display: none;
+      z-index: 1000;
+      position: absolute;
+      left: 50%;
+      margin-left: -30px;
+      font-size: 12px;
+      line-height: 16px;
+      color: $primary;
+      background-color: #d7e9fe;
+      width: 60px;
+      height: 16px;
+      text-align: center;
+      pointer-events: none;
+    }
+  }
+
+  .content-box-head {
+    &:after {
+      bottom: -15px;
+      content: '头部区域';
+    }
+  }
+
+  .content-box-foot {
+    &:after {
+      top: -15px;
+      content: '尾部区域';
+    }
+  }
+
+  .design-pc.preview {
+    .content-box-head, .content-box-foot {
+      &:after {
+        display: none;
+      }
+    }
+  }
+
+  /* 头部和底部提示信息 end */
+}
+

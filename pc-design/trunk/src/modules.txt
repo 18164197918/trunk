@@ -1,0 +1,15 @@
+base-module-animation
+
+module-bd
+module-jh
+
+改变模块大小时 
+shift 等比缩放
+alt 中心缩放
+
+移动模块时
+shift 水平 垂直移动
+
+
+高级组件内
+基础组件选中颜色  样式

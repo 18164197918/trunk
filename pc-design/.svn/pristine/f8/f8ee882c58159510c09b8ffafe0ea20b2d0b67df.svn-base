@@ -1,0 +1,10 @@
+src/components/pc
+src/components/mobile
+src/components/category
+src/components/common/ueditor-wrap
+src/components/common/sortList.vue
+src/components/demo/*
+!src/components/demo/small.vue
+!src/components/demo/class.vue
+!src/components/demo/map.vue
+!src/components/demo/geo-transfer.vue
